@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* ============================================
+   TAILWIND V4 THEME CONFIGURATION
+============================================ */
+@theme {
+  --color-primary: #4F46E5;
+  --color-primary-50: #EEF2FF;
+  --color-primary-100: #E0E7FF;
+  --color-primary-500: #6366F1;
+  --color-primary-600: #4F46E5;
+  --color-primary-700: #4338CA;
+
+  --color-accent: #06B6D4;
+  --color-accent-500: #06B6D4;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-wave: wave 1.2s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-slide-up: slide-up 0.5s ease-out forwards;
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-bounce-in: bounce-in 0.5s ease-out forwards;
+}
+
+/* ============================================
+   CSS VARIABLES — LIGHT & DARK THEME
+============================================ */
+/* ============================================
+   PEARL LIGHT THEME (default / :root)
+   A premium off-white theme: layered backgrounds,
+   white cards, indigo accents, deep navy text.
+============================================ */
+:root {
+  /* Backgrounds — three-layer hierarchy */
+  --color-bg:            #F6F8FC;   /* Pearl — soft off-white page canvas */
+  --color-bg-secondary:  #EEF2F7;   /* Slightly deeper for sections */
+  --color-surface:       #FFFFFF;   /* Pure white cards — pop off the canvas */
+  --color-surface-2:     #F0F4F8;   /* Inner card regions / input backgrounds */
+
+  /* Borders */
+  --color-border:        #E2E8F0;   /* Subtle slate border */
+  --color-border-subtle: #EEF2F7;   /* Nearly invisible — section dividers */
+
+  /* Typography — deep navy for strong contrast */
+  --color-text-primary:   #172033;  /* Near-black navy */
+  --color-text-secondary: #64748B;  /* Slate — readable secondary */
+  --color-text-muted:     #94A3B8;  /* Light slate — labels, hints */
+
+  /* Indigo accent system */
+  --color-primary-css:   #4F46E5;   /* Indigo 600 */
+  --color-primary-light: #EEF2FF;   /* Indigo 50 — soft tint backgrounds */
+  --color-accent-css:    #0EA5E9;   /* Sky blue accent */
+  --color-accent-light:  #E0F2FE;   /* Sky 100 */
+
+  /* Shadows — soft blue-tinted, not plain gray */
+  --shadow-card:       0 1px 4px rgba(79, 70, 229, 0.06), 0 4px 16px rgba(23, 32, 51, 0.07);
+  --shadow-card-hover: 0 4px 12px rgba(79, 70, 229, 0.10), 0 8px 32px rgba(23, 32, 51, 0.10);
+
+  /* Glass — light frosted */
+  --glass-bg:     rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(79, 70, 229, 0.10);
+}
+
+
+.dark {
+  --color-bg: #020817;
+  --color-bg-secondary: #0F172A;
+  --color-surface: #0F172A;
+  --color-surface-2: #1E293B;
+  --color-border: #1E293B;
+  --color-border-subtle: #334155;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --color-primary-css: #3B82F6;
+  --color-primary-light: rgba(37, 99, 235, 0.15);
+  --color-accent-css: #22D3EE;
+  --color-accent-light: rgba(6, 182, 212, 0.15);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   GLOBAL RESET & BASE
+============================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* ============================================
+   SCROLLBAR
+============================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* Pearl scrollbar in dark mode */
+.dark ::-webkit-scrollbar-thumb { background: #475569; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #64748B; }
+
+/* ============================================
+   GLASSMORPHISM
+============================================ */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ============================================
+   GRADIENT TEXT — Pearl: indigo → sky
+============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #4F46E5, #0EA5E9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   GLOW EFFECTS — Pearl indigo
+============================================ */
+.glow-primary { box-shadow: 0 0 24px rgba(79, 70, 229, 0.30); }
+.glow-accent  { box-shadow: 0 0 24px rgba(14, 165, 233, 0.30); }
+.glow-success { box-shadow: 0 0 24px rgba(22, 163, 74, 0.25); }
+
+/* Dark-mode glows stay vivid */
+.dark .glow-primary { box-shadow: 0 0 30px rgba(99, 102, 241, 0.45); }
+.dark .glow-accent  { box-shadow: 0 0 30px rgba(6, 182, 212, 0.40); }
+.dark .glow-success { box-shadow: 0 0 30px rgba(34, 197, 94, 0.30); }
+
+/* ============================================
+   CARD — Pearl version
+============================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+  border-color: rgba(79, 70, 229, 0.18);  /* Pearl indigo tint on hover */
+}
+
+/* ============================================
+   BUTTONS — Pearl indigo gradient
+============================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4F46E5, #4338CA);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.40);
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #6366F1, #0EA5E9);
+}
+
+/* ============================================
+   SELECTION & FOCUS — Pearl indigo tint
+============================================ */
+::selection { background: rgba(79, 70, 229, 0.18); }
+:focus-visible { outline: 2px solid #4F46E5; outline-offset: 2px; border-radius: 4px; }
+
+
+
+/* ============================================
+   SKELETON LOADER
+============================================ */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-border) 25%, var(--color-border-subtle) 50%, var(--color-border) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ============================================
+   KEYFRAMES
+============================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.25); }
+  50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.60); }
+}
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1.2); }
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes bounce-in {
+  0%  { opacity: 0; transform: scale(0.7); }
+  70% { transform: scale(1.05); }
+  100%{ opacity: 1; transform: scale(1); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Animation utility classes */
+.animate-float       { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-wave        { animation: wave 1.2s ease-in-out infinite; }
+.animate-slide-up    { animation: slide-up 0.5s ease-out forwards; }
+.animate-fade-in     { animation: fade-in 0.4s ease-out forwards; }
+.animate-bounce-in   { animation: bounce-in 0.5s ease-out forwards; }
+.animate-spin-slow   { animation: spin-slow 8s linear infinite; }
+
+/* ============================================
+   WAVEFORM — Pearl indigo-sky gradient
+============================================ */
+.waveform-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to top, #4F46E5, #0EA5E9);
+  animation: wave 1.2s ease-in-out infinite;
+  min-height: 4px;
+}
+.waveform-bar:nth-child(1)  { animation-delay: 0s; }
+.waveform-bar:nth-child(2)  { animation-delay: 0.08s; }
+.waveform-bar:nth-child(3)  { animation-delay: 0.16s; }
+.waveform-bar:nth-child(4)  { animation-delay: 0.24s; }
+.waveform-bar:nth-child(5)  { animation-delay: 0.32s; }
+.waveform-bar:nth-child(6)  { animation-delay: 0.24s; }
+.waveform-bar:nth-child(7)  { animation-delay: 0.16s; }
+.waveform-bar:nth-child(8)  { animation-delay: 0.08s; }
+.waveform-bar:nth-child(9)  { animation-delay: 0s; }
+.waveform-bar:nth-child(10) { animation-delay: 0.12s; }
+.waveform-bar:nth-child(11) { animation-delay: 0.20s; }
+.waveform-bar:nth-child(12) { animation-delay: 0.28s; }
+.waveform-bar:nth-child(13) { animation-delay: 0.36s; }
+.waveform-bar:nth-child(14) { animation-delay: 0.28s; }
+.waveform-bar:nth-child(15) { animation-delay: 0.20s; }
+.waveform-bar:nth-child(16) { animation-delay: 0.12s; }
+.waveform-bar:nth-child(17) { animation-delay: 0s; }
+.waveform-bar:nth-child(18) { animation-delay: 0.08s; }
+.waveform-bar:nth-child(19) { animation-delay: 0.16s; }
+.waveform-bar:nth-child(20) { animation-delay: 0.08s; }
+
+/* ============================================
+   PROGRESS RING
+============================================ */
+.progress-ring { transform: rotate(-90deg); }
+.progress-ring-circle { transition: stroke-dashoffset 1.5s ease-in-out; }
+
+/* ============================================
+   SELECTION & FOCUS
+============================================ */
+::selection { background: rgba(37, 99, 235, 0.25); }
+:focus-visible { outline: 2px solid #2563EB; outline-offset: 2px; border-radius: 4px; }
+
+/* ============================================
+   WAVEFORM ANIMATION (Interview Room)
+============================================ */
+.waveform-bar {
+  width: 3px;
+  min-height: 4px;
+  background: linear-gradient(to top, #3B82F6, #06B6D4);
+  border-radius: 9999px;
+  animation: waveform 1.2s ease-in-out infinite;
+}
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* ============================================
+   SKELETON LOADING
+============================================ */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-surface-2) 25%, var(--color-border) 50%, var(--color-surface-2) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 12px;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
